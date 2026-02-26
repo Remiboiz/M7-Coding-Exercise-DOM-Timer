@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Timer</title>
+</head>
+<body>
+    <h1>Timer: <span id="timerDisplay">0</span></h1>
+    <input type="button" id="startTimer" value="Start Timer"><br>
+    <input type="button" id="stopTimer" value="Stop Timer"><br>
+    <input type="button" id="resetTimer" value="Reset Timer"><br>
+
+<script> 
+//variable to keep tract of time and and the intervals
+let seconds =0;
+let timerVariable = null;
+
+//Getting the elements from the page
+const display = document.getElementById('timerDisplay');
+const startBtn = document.getElementById('startTimer');
+const stopBtn = document.getElementById('stopTimer');
+const resetBtn = document.getElementById('resetTimer');
+
+//start the funcrtionn
+startBtn.onclick = function() {
+    // check is a timer is already running to try to prevent speeding up
+    if(timerVariable === null) {
+        timerVariable = setInterval(function() {
+        seconds++;
+        display.innerHTML = seconds;
+    }, 1000);
+    }
+};
+
+//stop da function
+stopBtn.onclick = function() {
+    clearInterval(timerVariable);
+    timerVariable = null; //reset variable
+};
+
+//reset function 
+resetBtn.onclick= function (){
+    // stop da timer
+    clearInterval(timerVariable);
+    timerVariable = null;
+
+    //re set da data and the display
+    seconds = 0;
+    display.innerHTML = seconds;
+};
+</script>
+</body>
+</html>
